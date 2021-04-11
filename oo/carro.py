@@ -97,6 +97,36 @@ Exemplo:
     'Oeste'
 """
 
+NORTE = 'Norte'
+LESTE = 'Leste'
+SUL = 'Sul'
+OESTE = 'Oeste'
+
+
+class Direcao:
+
+    def __init__(self, valor=NORTE):
+        self.valor = valor
+
+    def girar_a_direita(self):
+        if self.valor == NORTE:
+            self.valor = LESTE
+        elif self.valor == LESTE:
+            self.valor = SUL
+        elif self.valor == SUL:
+            self.valor = OESTE
+        else:
+            self.valor = NORTE
+
+    def girar_a_esquerda(self):
+        if self.valor == NORTE:
+            self.valor = OESTE
+        elif self.valor == OESTE:
+            self.valor = SUL
+        elif self.valor == SUL:
+            self.valor = LESTE
+        else:
+            self.valor = NORTE
 
 
 class Motor:
@@ -109,34 +139,8 @@ class Motor:
 
     def frear(self):
         self.velocidade -= 2
-        if self.velocidade < 0:
-            self.velocidade = 0
+        self.velocidade = max(0, self.velocidade)
 
-
-class Direcao:
-
-    def __init__(self, valor='Norte'):
-        self.valor = valor
-
-    def girar_a_direita(self):
-        if self.valor == 'Norte':
-            self.valor = 'Leste'
-        elif self.valor == 'Leste':
-            self.valor = 'Sul'
-        elif self.valor == 'Sul':
-            self.valor = 'Oeste'
-        else:
-            self.valor = 'Norte'
-
-    def girar_a_esquerda(self):
-        if self.valor == 'Norte':
-            self.valor = 'Oeste'
-        elif self.valor == 'Oeste':
-            self.valor = 'Sul'
-        elif self.valor == 'Sul':
-            self.valor = 'Leste'
-        else:
-            self.valor = 'Norte'
 
 class Carro:
 
