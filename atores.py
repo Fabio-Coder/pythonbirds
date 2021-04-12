@@ -52,12 +52,11 @@ class Ator():
         :param intervalo: Intervalo a ser considerado
         :return:
         """
-        if self.status==ATIVO and outro_ator.status==ATIVO:
-            delta_x=abs(self.x-outro_ator.x)
-            delta_y=abs(self.y-outro_ator.y)
-            if delta_x <= 1 or delta_y <= 1:
+        if self.status == ATIVO and outro_ator.status == ATIVO:
+            delta_x = abs(self.x - outro_ator.x)
+            delta_y = abs(self.y - outro_ator.y)
+            if delta_x <= intervalo and delta_y <= intervalo:
                 self.status = outro_ator.status = DESTRUIDO
-
 
 
 class Obstaculo(Ator):
@@ -122,7 +121,6 @@ class Passaro(Ator):
         :return: posição x, y
         """
         return 1, 1
-
 
     def lancar(self, angulo, tempo_de_lancamento):
         """
